@@ -319,21 +319,19 @@ class KMeans:
         ##  AND CHANGE FOR YOUR OWN CODE
         #######################################################
         
-        self.K = 2
+        print("-------------------------------------")
+        self.K = 1
         self.fit()
         self.withinClassDistance()
-        decK = 0
-        trobat = True
-        aux1 = []
-        aux2 = []
-        while self.K < max_K and (100 - decK) >= 0.2:
+        decK = 121
+        while self.K < max_K and decK >= 1.16:
             old_WCD = self.WCD
             self.K+=1
             self.fit()
             self.withinClassDistance()
-            decK = self.WCD * 100 / old_WCD
-            #aux.append()   decK
-            print(self.K,decK)
+            decK = self.WCD / old_WCD
+            print(self.K,decK,decK > 1.20)
+        self.K-=1
         return self.K
 
 def distance(X, C):
